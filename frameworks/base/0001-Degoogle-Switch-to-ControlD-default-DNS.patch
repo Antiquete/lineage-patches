@@ -1,0 +1,57 @@
+From 1de46ad5e106d1e350a604e933e8c21cc2801531 Mon Sep 17 00:00:00 2001
+From: Antiquete <antiquete@proton.me>
+Date: Sat, 18 Nov 2023 00:53:32 +0530
+Subject: [PATCH] Degoogle: Switch to ControlD default DNS
+
+Change-Id: I6b91c5287f22ab30273ad567ab80aa9182d4ce47
+---
+ core/res/res/values/config.xml                                | 2 +-
+ packages/SettingsLib/res/values/strings.xml                   | 4 ++--
+ .../bandwidthenforcement/BandwidthEnforcementTestService.java | 2 +-
+ 3 files changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/core/res/res/values/config.xml b/core/res/res/values/config.xml
+index f5ed2e50..9d271784 100644
+--- a/core/res/res/values/config.xml
++++ b/core/res/res/values/config.xml
+@@ -2267,7 +2267,7 @@
+     <string name="config_overrideComponentUiPackage" translatable="false">com.android.stk</string>
+ 
+     <!-- IP address of the dns server to use if nobody else suggests one -->
+-    <string name="config_default_dns_server" translatable="false">8.8.8.8</string>
++    <string name="config_default_dns_server" translatable="false">76.76.10.2</string>
+ 
+     <!-- The default mobile provisioning apn. Empty by default, maybe overridden by
+          an mcc/mnc specific config.xml -->
+diff --git a/packages/SettingsLib/res/values/strings.xml b/packages/SettingsLib/res/values/strings.xml
+index cf372057..196e588b 100644
+--- a/packages/SettingsLib/res/values/strings.xml
++++ b/packages/SettingsLib/res/values/strings.xml
+@@ -1185,9 +1185,9 @@
+     <!-- Hint text for the IP address -->
+     <string name="wifi_ip_address_hint" translatable="false">192.168.1.128</string>
+     <!-- Hint text for DNS -->
+-    <string name="wifi_dns1_hint" translatable="false">8.8.8.8</string>
++    <string name="wifi_dns1_hint" translatable="false">76.76.2.2</string>
+     <!-- Hint text for DNS -->
+-    <string name="wifi_dns2_hint" translatable="false">8.8.4.4</string>
++    <string name="wifi_dns2_hint" translatable="false">76.76.10.2</string>
+     <!-- Hint text for the gateway -->
+     <string name="wifi_gateway_hint" translatable="false">192.168.1.1</string>
+     <!-- Hint text for network prefix length -->
+diff --git a/tests/BandwidthTests/src/com/android/tests/bandwidthenforcement/BandwidthEnforcementTestService.java b/tests/BandwidthTests/src/com/android/tests/bandwidthenforcement/BandwidthEnforcementTestService.java
+index 644d450a..eafff6c7 100644
+--- a/tests/BandwidthTests/src/com/android/tests/bandwidthenforcement/BandwidthEnforcementTestService.java
++++ b/tests/BandwidthTests/src/com/android/tests/bandwidthenforcement/BandwidthEnforcementTestService.java
+@@ -164,7 +164,7 @@ public class BandwidthEnforcementTestService extends IntentService {
+ 
+                 final byte[] query = buildDnsQuery("www", "android", "com");
+                 final DatagramPacket queryPacket = new DatagramPacket(
+-                        query, query.length, InetAddress.parseNumericAddress("8.8.8.8"), 53);
++                        query, query.length, InetAddress.parseNumericAddress("76.76.10.2"), 53);
+                 socket.send(queryPacket);
+ 
+                 final byte[] reply = new byte[query.length];
+-- 
+2.42.1
+
