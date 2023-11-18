@@ -1,0 +1,40 @@
+From f15155e279a1f741c556eefd3d429e281a4bc4d3 Mon Sep 17 00:00:00 2001
+From: Antiquete <antiquete@proton.me>
+Date: Sat, 18 Nov 2023 11:33:07 +0530
+Subject: [PATCH] Degoogle: Switch to GrapheneOS supl servers
+
+Change-Id: If63bbd50ba03042348e50ffce1a310245278e28b
+---
+ core/res/res/values/config.xml                             | 2 +-
+ telephony/java/android/telephony/CarrierConfigManager.java | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/core/res/res/values/config.xml b/core/res/res/values/config.xml
+index 9d271784..8893db5d 100644
+--- a/core/res/res/values/config.xml
++++ b/core/res/res/values/config.xml
+@@ -5936,7 +5936,7 @@
+     <!-- GNSS configurations to override carrier config. Empty by default-->
+     <string-array name="config_gnssParameters" translatable="false">
+         <!-- Add configurations here, example: -->
+-        <!-- <item>SUPL_HOST=supl.google.com</item> -->
++        <item>SUPL_HOST=supl.grapheneos.org</item>
+     </string-array>
+ 
+     <integer name="config_chooser_max_targets_per_row">4</integer>
+diff --git a/telephony/java/android/telephony/CarrierConfigManager.java b/telephony/java/android/telephony/CarrierConfigManager.java
+index 741721d1..4f08b1d4 100644
+--- a/telephony/java/android/telephony/CarrierConfigManager.java
++++ b/telephony/java/android/telephony/CarrierConfigManager.java
+@@ -4727,7 +4727,7 @@ public class CarrierConfigManager {
+         private static PersistableBundle getDefaults() {
+             PersistableBundle defaults = new PersistableBundle();
+             defaults.putBoolean(KEY_PERSIST_LPP_MODE_BOOL, true);
+-            defaults.putString(KEY_SUPL_HOST_STRING, "supl.google.com");
++            defaults.putString(KEY_SUPL_HOST_STRING, "supl.grapheneos.org");
+             defaults.putString(KEY_SUPL_PORT_STRING, "7275");
+             defaults.putString(KEY_SUPL_VER_STRING, "0x20000");
+             defaults.putString(KEY_SUPL_MODE_STRING, "1");
+-- 
+2.42.1
+
